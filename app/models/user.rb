@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :movies, dependent: :destroy
 
-  validates: :name, presence: true
+  validates :name, presence: true
 end
