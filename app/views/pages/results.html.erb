@@ -1,0 +1,6 @@
+<% @movies.each do |movie| %>
+<img src="<%= movie["Poster"] %>" alt="">
+<h1><%= movie["Title"]%> <%= movie["Year"] %></h1>
+<%= link_to "Show", movie_path(movie["imdbID"]) %>
+<hr>
+<% end %>
