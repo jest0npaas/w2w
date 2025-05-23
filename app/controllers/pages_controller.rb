@@ -7,11 +7,12 @@ class PagesController < ApplicationController
 
   def results
     # real API call
-    # @movies = MovieApi.get_movies_by_title(params[:query])["Search"]
+    @movies = MovieApi.get_movies_by_title(params[:query])["Search"]
+
 
     # mock API data call
-    file_path = Rails.root.join("lib", "assets", "search.json")
-    @movies = JSON.parse(File.read(file_path))["Search"]
+    # file_path = Rails.root.join("lib", "assets", "search.json")
+    # @movies = JSON.parse(File.read(file_path))["Search"]
 
     @movies.each do |movie|
       Movie.find_or_create_by(api_movie_id: movie["imdbID"]) do |m|
