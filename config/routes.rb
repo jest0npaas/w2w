@@ -12,4 +12,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#index"
+  get "/search", to: "pages#search"
+  get "/results", to: "pages#results"
+  resources :movies, only: [ :show ]
 end

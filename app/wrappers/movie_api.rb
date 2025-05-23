@@ -9,7 +9,7 @@ class MovieApi
     http.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = "b2e991f43amshce9b63effdf72c5p16a73cjsn2c74ee9644af"
+    request["x-rapidapi-key"] = ENV["API_KEY"]
     request["x-rapidapi-host"] = "movie-database-by-based-api.p.rapidapi.com"
 
     response = http.request(request)
@@ -23,7 +23,7 @@ class MovieApi
     http.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = "b2e991f43amshce9b63effdf72c5p16a73cjsn2c74ee9644af"
+    request["x-rapidapi-key"] = ENV["API_KEY"]
     request["x-rapidapi-host"] = "movie-database-by-based-api.p.rapidapi.com"
 
     response = http.request(request)
