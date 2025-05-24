@@ -4,8 +4,20 @@
     <div class="py-8 px-4 text-center lg:py-16 z-10 relative">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-300 md:text-5xl lg:text-6xl">Rate it. Watch it. Love it.</h1>
         <p class="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 lg:px-48">Here at WhatToWatch, discover movie ratings at a glance and save your favorites for easy access anytime.</p>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "grid gap-4 grid-cols-[1fr_1fr_1fr_auto] items-center"}) do |f| %>   
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "grid gap-4 grid-cols-[1fr_1fr_1fr_1fr_auto] items-center"}) do |f| %>   
             <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="relative">
+                  <div class="absolute inset-y-0 rtl:inset-x-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 576 512">
+                          <path d="M528 160l0 256c0 8.8-7.2 16-16 16l-192 0c0-44.2-35.8-80-80-80l-64 0c-44.2 0-80 35.8-80 80l-32 0c-8.8 0-16-7.2-16-16l0-256 480 0zM64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM272 256a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zm104-48c-13.3 0-24 10.7-24 24s10.7 24 24 24l80 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-80 0zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l80 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-80 0z"/>
+                      </svg>
+                  </div>
+                  <%= f.text_field :name,
+                        autofocus: true,
+                        autocomplete: "name",
+                        placeholder: "Enter your name here...",
+                        class: "block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500" %>
+              </div>
               <div class="relative">
                   <div class="absolute inset-y-0 rtl:inset-x-0 start-0 flex items-center ps-3.5 pointer-events-none">
                       <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
@@ -46,10 +58,7 @@
                       class: "text-white end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
               </div>
         <% end %>
-
-        <%= render "devise/shared/links" %>
-        
-        <p class="text-gray-300 mt-4">Already have an account? Log in here</p>
+        <p class="text-gray-300 mt-2">Already have an account? <a href="http://127.0.0.1:3000/users/sign_in" class="text-blue-700">Log in here</a></p>
     </div>
   </section>
 
