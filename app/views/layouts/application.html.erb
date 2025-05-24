@@ -20,10 +20,19 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
     <main class="container flex">
+      <% if user_signed_in? %>
+        Logged in as <%= current_user.email %> |
+        <button data-confirm="Test confirmation?">Test Confirm</button>
+        <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Sign up', new_user_registration_path %> |
+        <%= link_to 'Login', new_user_session_path %>
+      <% end %>
       <%= yield %>
     </main>
   </body>
