@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_22_114736) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_24_000252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "already_watched_movies_by_users", force: :cascade do |t|
+    t.float "personal_rating"
+    t.string "remarks"
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_already_watched_movies_by_users_on_movie_id"
+    t.index ["user_id"], name: "index_already_watched_movies_by_users_on_user_id"
+  end
+
+  create_table "favorite_movies_by_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_favorite_movies_by_users_on_movie_id"
+    t.index ["user_id"], name: "index_favorite_movies_by_users_on_user_id"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -30,6 +50,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_22_114736) do
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
+  create_table "soon_to_watch_movies_by_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_soon_to_watch_movies_by_users_on_movie_id"
+    t.index ["user_id"], name: "index_soon_to_watch_movies_by_users_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -43,5 +72,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_22_114736) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "already_watched_movies_by_users", "movies"
+  add_foreign_key "already_watched_movies_by_users", "users"
+  add_foreign_key "favorite_movies_by_users", "movies"
+  add_foreign_key "favorite_movies_by_users", "users"
   add_foreign_key "movies", "users"
+  add_foreign_key "soon_to_watch_movies_by_users", "movies"
+  add_foreign_key "soon_to_watch_movies_by_users", "users"
 end

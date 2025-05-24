@@ -1,0 +1,16 @@
+<h3> My Soon To Watch </h3>
+<br/>
+<span> Count: <%= @my_soon_to_watch_movies.count %> </span>
+
+<% if @my_soon_to_watch_movies.any? %>
+  <ul>
+    <% @my_soon_to_watch_movies.each do |m| %>
+      <li>
+        <%= m.title %>
+        <img src=<%= m.poster %> alt="">
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no soon to watch movies yet.</p>
+<% end %>

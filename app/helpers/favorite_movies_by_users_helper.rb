@@ -1,0 +1,2 @@
+module FavoriteMoviesByUsersHelper
+end

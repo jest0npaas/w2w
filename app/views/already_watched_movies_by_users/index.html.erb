@@ -1,0 +1,16 @@
+<h3> My Already Watched Movies </h3>
+<br/>
+<span> Count: <%= @my_already_watched_movies.count %> </span>
+
+<% if @my_already_watched_movies.any? %>
+  <ul>
+    <% @my_already_watched_movies.each do |m| %>
+      <li>
+        <%= m.title %>
+        <img src=<%= m.poster %> alt="">
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no already watched movies yet.</p>
+<% end %>

@@ -15,4 +15,13 @@ Rails.application.routes.draw do
   get "/search", to: "pages#search"
   get "/results", to: "pages#results"
   resources :movies, only: [ :show ]
+
+  resources :users, only: [:show]
+
+  get 'favorite_movies', to: 'favorite_movies_by_users#index', as: 'favorite_movies'
+  post 'favorite_movies/:movie_id', to: 'favorite_movies_by_users#create', as: 'add_favorite_movie'
+  get 'soon_to_watch_movies', to: 'soon_to_watch_movies_by_users#index', as: 'soon_to_watch_movie'
+  post 'soon_to_watch_movies/:movie_id', to: 'soon_to_watch_movies_by_users#create', as: 'add_soon_to_watch_movie'
+  get 'already_watched_movies', to: 'already_watched_movies_by_users#index', as: 'already_watched_movie'
+  post 'already_watched_movies/:movie_id', to: 'already_watched_movies_by_users#create', as: 'add_already_watched_movie'
 end
