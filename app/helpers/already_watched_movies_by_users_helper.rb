@@ -1,0 +1,2 @@
+module AlreadyWatchedMoviesByUsersHelper
+end

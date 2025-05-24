@@ -1,0 +1,16 @@
+<h3> My Favorites </h3>
+<br/>
+<span> Count: <%= @my_favorite_movies.count %> </span>
+
+<% if @my_favorite_movies.any? %>
+  <ul>
+    <% @my_favorite_movies.each do |m| %>
+      <li>
+        <%= m.title %>
+        <img src=<%= m.poster %> alt="">
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no favorite movies yet.</p>
+<% end %>

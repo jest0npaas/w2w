@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  personal_rating: 1.5
+  remarks: MyString
+  user: one
+  movie: one
+
+two:
+  personal_rating: 1.5
+  remarks: MyString
+  user: two
+  movie: two

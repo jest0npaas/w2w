@@ -1,4 +1,8 @@
 class MoviesController < ApplicationController
+  def index
+    @movies = Movies.all.order(created_at: :desc)
+  end
+  
   def show
     @movie = Movie.find_by(api_movie_id: params[:id])
 
