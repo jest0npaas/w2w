@@ -27,14 +27,21 @@
   <body>
     <main class="container mx-auto flex">
       <% if user_signed_in? %>
-        Logged in as <%= current_user.email %> |
-        <button data-confirm="Test confirmation?">Test Confirm</button>
+        <div class="flex items-center space-x-2 mt-4">
+          <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+            <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+          </div>
+          <span class="text-base font-medium text-center text-white"><%= current_user.name %></span>
+        </div>
+        <div class="fixed right-0 mt-4 mr-10 inline-flex justify-center items-center py-1 px-3 text-base font-medium text-center text-white rounded-lg hover:bg-gray-200 hover:text-gray-800 border-4 border-gray-200">
         <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Sign up', new_user_registration_path %> |
-        <%= link_to 'Login', new_user_session_path %>
+        </div>
       <% end %>
       <%= yield %>
     </main>
   </body>
 </html>
+
+
+
+

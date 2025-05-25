@@ -1,26 +1,94 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<body class="bg-cover bg-[url('/dark-vip-cinema-studio-still-life.jpg')] overflow-x-hidden">
+<div class="flex flex-col">
+  <section class="flex mx-auto">
+    <div class="py-8 px-4 text-center lg:py-16 z-10 relative">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-300 md:text-5xl lg:text-6xl">Rate it. Watch it. Love it.</h1>
+        <p class="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 lg:px-48">Here at WhatToWatch, discover movie ratings at a glance and save your favorites for easy access anytime.</p>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "grid gap-4 w-3/4 mx-auto grid-cols-[1fr_1fr_auto] items-center"}) do |f| %>   
+              <div class="relative">
+                  <div class="absolute inset-y-0 rtl:inset-x-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                          <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
+                          <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
+                      </svg>
+                  </div>
+                  <%= f.email_field :email,
+                        autofocus: true,
+                        autocomplete: "email",
+                        placeholder: "Enter your email here...",
+                        class: "block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500" %>
+              </div>
+              <div class="relative">
+                  <div class="absolute inset-y-0 rtl:inset-x-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
+                          <path d="M336 352c97.2 0 176-78.8 176-176S433.2 0 336 0S160 78.8 160 176c0 18.7 2.9 36.8 8.3 53.7L7 391c-4.5 4.5-7 10.6-7 17l0 80c0 13.3 10.7 24 24 24l80 0c13.3 0 24-10.7 24-24l0-40 40 0c13.3 0 24-10.7 24-24l0-40 40 0c6.4 0 12.5-2.5 17-7l33.3-33.3c16.9 5.4 35 8.3 53.7 8.3zM376 96a40 40 0 1 1 0 80 40 40 0 1 1 0-80z"/>
+                      </svg>
+                  </div>
+                  <%= f.password_field :password,
+                  autocomplete: "current-password",
+                  placeholder: "Enter your password here...",
+                  class: "block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500" %>
+              </div>
+              <div>
+                <%= f.submit "Log in",
+                      class: "text-white end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" %>
+              </div>
+        <% end %>
+        <div class="flex justify-around mx-auto w-3/4 mt-2">
+          <%= link_to "Forgot your password?", new_password_path(resource_name), class:"text-gray-300" %>
+          <%= link_to "Create an account", new_registration_path(resource_name), class:"text-red-400" %>
+        </div>
     </div>
-  <% end %>
+  </section>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+  <section>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid gap-4">
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/tUae3mefrDVTgm5mRzqWnZK6fOP.jpg" alt="Lilo & Stitch movie poster">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/m9EtP1Yrzv6v7dMaC9mRaGhd1um.jpg" alt="Thunderbolts movie poster">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg" alt="The Last Of Us movie poster">
+            </div>
+        </div>
+        <div class="grid gap-4">
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg" alt="Mission Impossible movie poster">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/aLVkiINlIeCkcZIzb7XHzPYgO6L.jpg" alt="Moana 2 movie poster">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/vnIPXGpnoIsJOCt2TCB9p4cBCJ0.jpg" alt="Midnight Sun movie poster">
+            </div>
+        </div>
+        <div class="grid gap-4">
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/6WxhEvFsauuACfv8HyoVX6mZKFj.jpg" alt="Final Destination movie poster">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/oLxWocqheC8XbXbxqJ3x422j9PW.jpg" alt="Snow White movie poster">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/abeH7n5pcuQcwYcTxG6DTZvXLP1.jpg" alt="Mobland movie poster">
+            </div>
+        </div>
+        <div class="grid gap-4">
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg" alt="Minecraft movie poster">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/kMDUS7VmFhb2coRfVBoGLR8ADBt.jpg" alt="The Accountant 2 movie poster">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="https://www.themoviedb.org/t/p/w1280/zboCGZ4aIqPMd7VFI4HWnmc7KYJ.jpg" alt="Another Simple Favor movie poster">
+            </div>
+        </div>
+    </div>
+  </section>
+</div>
+</body>

@@ -1,4 +1,7 @@
-<%= form_with url: "/results", method: :get do |form| %>
+<body class="bg-gray-900">
+  <%= form_with url: "/results", method: :get do |form| %>
   <%= form.search_field :query, aria: { label: "Seach" }, placeholder: "Search movies" %>
   <%= form.submit "Search" %>
-<% end %>
+  <% end %>
+</body>
+
