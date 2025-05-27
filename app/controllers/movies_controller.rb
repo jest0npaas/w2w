@@ -1,10 +1,12 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @movies = Movies.all.order(created_at: :desc)
+    @movies = current_user.movies.all.order(created_at: :desc)
   end
-  
+
   def show
-    @movie = Movie.find_by(api_movie_id: params[:id])
+    @movie = current_user.movies.find_by(api_movie_id: params[:id])
 
     if @movie.api_rating.blank?
       # real API call
