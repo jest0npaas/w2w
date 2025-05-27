@@ -1,6 +1,17 @@
-<% @movies.each do |movie| %>
-<img src="<%= movie["Poster"] %>" alt="">
-<h1><%= movie["Title"]%> <%= movie["Year"] %></h1>
-<%= link_to "Show", movie_path(movie["imdbID"]) %>
-<hr>
+<% if @movies.present? %>
+  <% @movies.each do |movie| %>
+    <div class="movie">
+      <img src="<%= movie["Poster"] %>" alt="Poster for <%= movie["Title"] %>">
+      <h1><%= "#{movie['Title']} #{movie['Year']}" %></h1>
+
+      <% if user_signed_in? %>
+        <%= link_to "Show", movie_path(movie["imdbID"]) %>
+      <% end %>
+
+    </div>
+  <% end %>
+<% end %>
+
+<% unless user_signed_in? %>
+  <p><%= link_to "Login", new_user_session_path %> to add movies to your watchlist</p>
 <% end %>
