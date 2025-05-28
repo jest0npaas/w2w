@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # resources :users, only: [:show]
 
-  resources :favorite_movies_by_users, path: 'favorite', only: [:index, :create]
-  resources :soon_to_watch_movies_by_users, path: 'soon_to_watch', only: [:index, :create]
+  resources :favorite_movies_by_users, path: 'favorite', only: [:index, :create, :destroy]
+  resources :soon_to_watch_movies_by_users, path: 'soon_to_watch', only: [:index, :create, :destroy]
   resources :already_watched_movies_by_users, path: 'already_watched', only: [:index, :create]
 end
