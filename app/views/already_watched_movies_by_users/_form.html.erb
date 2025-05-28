@@ -1,0 +1,19 @@
+<div id="watched_form" style="display: none; margin-top: 1em;">
+  <%= form_with url: already_watched_movies_by_users_path, method: :post do |f| %>
+    <%= hidden_field_tag :movie_id, @movie.id %>
+
+    <div>
+      <%= label_tag 'already_watched_movies_by_user[personal_rating]', "Your Rating (out of 10)" %><br>
+      <%= number_field_tag 'already_watched_movies_by_user[personal_rating]', nil, step: 0.1, min: 0, max: 10 %>
+    </div>
+
+    <div>
+      <%= label_tag 'already_watched_movies_by_user[remarks]', "Remarks" %><br>
+      <%= text_area_tag 'already_watched_movies_by_user[remarks]' %>
+    </div>
+
+    <div>
+      <%= submit_tag "Submit" %>
+    </div>
+  <% end %>
+</div>

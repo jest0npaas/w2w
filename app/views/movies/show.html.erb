@@ -1,2 +1,26 @@
 <h1><%= @movie.title %></h1>
 <img src=<%= @movie.poster %> alt="">
+
+<turbo-frame id="update_movies">
+  <% if @my_already_watched_movies.include?(@movie) %>
+    <% if @my_favorite_movies.include?(@movie) %>
+      <%= button_to 'Remove from favorite', favorite_movies_by_user_path(movie_id: @movie.id), method: :delete %>
+    <% else %>
+      <%= button_to 'Add to favorite', favorite_movies_by_users_path(movie_id: @movie.id), method: :post %>
+    <% end %>
+  <% end %>
+
+  <% if @my_already_watched_movies.include?(@movie) %>
+    <div> Watched <%= @my_already_watched_movies.where(id: @movie.id).count %> time/s </div>
+  <% end %>
+
+  <% if @my_soon_to_watch_movies.include?(@movie) %>
+    <button onClick="document.getElementById('watched_form').style.display = 'block'"> 
+      Move to already_watched
+    </button>
+
+    <%= render 'already_watched_movies_by_users/form' %>
+  <% else %>
+    <%= button_to 'Add to soon_to_watch', soon_to_watch_movies_by_users_path(movie_id: @movie.id), method: :post %>
+  <% end %>
+</turbo-frame>
