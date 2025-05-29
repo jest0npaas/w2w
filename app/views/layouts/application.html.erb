@@ -47,7 +47,7 @@
           <span class="text-base font-medium text-center text-white"><%= current_user.name %></span>
         </div>
         <div class="fixed right-0 mt-4 mr-10 inline-flex justify-center items-center py-1 px-3 text-base font-medium text-center text-white rounded-lg hover:bg-gray-200 hover:text-gray-800 border-4 border-gray-200">
-        <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
+        <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: "cursor-pointer" %>
         </div>
       <% end %>
 
@@ -60,7 +60,8 @@
           else "bg-gray-100 text-gray-800"
         end %>
 
-        <div class="flash-message fixed top-20 left-1/2 transform -translate-x-1/2 z-100 w-full max-w-2xl px-4 py-3 rounded-lg shadow transition-opacity duration-1000 ease-in-out <%= flash_classes %>" role="alert">
+        
+        <div class="flash-message text-gray-500 bg-white fixed top-20 left-1/2 transform -translate-x-1/2 z-100 w-full max-w-2xl px-4 py-3 rounded-lg shadow transition-opacity duration-1000 ease-in-out <%= flash_classes %>" role="alert">
           <div class="text-center w-full">
             <span><%= msg %></span>
           </div>
