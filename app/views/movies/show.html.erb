@@ -8,6 +8,21 @@
     <% else %>
       <%= button_to 'Add to favorite', favorite_movies_by_users_path(movie_id: @movie.id), method: :post %>
     <% end %>
+    <div>
+      <% if @my_already_watched_movie.personal_rating.present? %>
+        Latest Personal Rating: <%= @my_already_watched_movie.personal_rating %> <br/>
+      <% else %>
+        Internet Movie Database Rating: <%= @movie.api_ratings %> <br/>
+      <% end %>
+
+      <% if @my_already_watched_movie.remarks.present? %>
+        Latest Remarks: <%= @my_already_watched_movie.remarks %>
+      <% end %>
+    </div>
+    <% else %>
+    <div> 
+      Internet Movie Database Rating: <%= @movie.api_rating %> <br/>
+    </div>
   <% end %>
 
   <% if @my_already_watched_movies.include?(@movie) %>
@@ -15,6 +30,7 @@
   <% end %>
 
   <% if @my_soon_to_watch_movies.include?(@movie) %>
+    <%= button_to 'Remove from soon_to_watch', soon_to_watch_movies_by_user_path(movie_id: @movie.id), method: :delete %>
     <button onClick="document.getElementById('watched_form').style.display = 'block'"> 
       Move to already_watched
     </button>

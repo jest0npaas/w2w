@@ -6,11 +6,14 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = current_user.movies.find_by(api_movie_id: params[:id])
-    @my_favorite_movies = current_user.favorite_movies
-    @my_favorite_movie = current_user.favorite_movies_by_users.find_by(movie_id: @movie.id)
-    @my_soon_to_watch_movies = current_user.soon_to_watch_movies
-    @my_already_watched_movies = current_user.already_watched_movies
+    @movie = Movie.find_by(api_movie_id: params[:id])
+
+    unless @movie
+      redirect_to request.referer || search_path, alert: "Movie not found"
+      return
+    end
+
+    load_show_data
 
     if @movie.api_rating.blank?
       # real API call
@@ -25,5 +28,16 @@ class MoviesController < ApplicationController
         api_rating: details["Ratings"].first["Value"]
       )
     end
+  end
+  
+  private
+
+  def load_show_data
+    @my_favorite_movies = current_user.favorite_movies
+    @my_favorite_movie = current_user.favorite_movies_by_users.find_by(movie_id: @movie.id)
+    @my_soon_to_watch_movies = current_user.soon_to_watch_movies
+    @my_soon_to_watch_movie = current_user.soon_to_watch_movies_by_users.find_by(movie_id: @movie.id)
+    @my_already_watched_movies = current_user.already_watched_movies
+    @my_already_watched_movie = current_user.already_watched_movies_by_users.find_by(movie_id: @movie.id)
   end
 end

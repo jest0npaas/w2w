@@ -6,8 +6,9 @@
   <ul>
     <% @my_soon_to_watch_movies.each do |m| %>
       <li>
-        <%= m.title %>
+        <strong><%= m.title %></strong>
         <img src=<%= m.poster %> alt="">
+        <%= link_to "Show", movie_path(m.api_movie_id) %>
       </li>
     <% end %>
   </ul>
