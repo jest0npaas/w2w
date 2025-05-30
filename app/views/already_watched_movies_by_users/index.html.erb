@@ -1,13 +1,19 @@
 <h3> My Already Watched Movies </h3>
 <br/>
-<span> Count: <%= @my_already_watched_movies.count %> </span>
+<span> Movie Count: <%= @my_already_watched_movies_latest.size %> </span>
 
-<% if @my_already_watched_movies.any? %>
+<% if @my_already_watched_movies_latest.any? %>
   <ul>
-    <% @my_already_watched_movies.each do |m| %>
+    <% @my_already_watched_movies_latest.each do |m| %>
+      <% movie = m.movie %>
       <li>
-        <%= m.title %>
-        <img src=<%= m.poster %> alt="">
+        <strong><%= movie.title %></strong> <br/>
+        <img src=<%= movie.poster %> alt=""> <br/>
+
+        Watched <%= @watched_counts[movie.id] %> time/s <br/>
+        Latest Watched Date: <%= m.created_at.strftime('%B %d, %Y %I:%M %p') %> <br/>
+        Latest Personal Rating: <%= m.personal_rating || "N/A" %> <br/>
+        Latest Remarks: <%= m.remarks.presence || "None" %>
       </li>
     <% end %>
   </ul>
