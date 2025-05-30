@@ -1,26 +1,41 @@
-<h1><%= @movie.title %></h1>
-<img src=<%= @movie.poster %> alt="">
+<body class="bg-cover bg-[url('/dark-vip-cinema-studio-still-life.jpg')] overflow-x-hidden">
 
-<turbo-frame id="update_movies">
-  <% if @my_already_watched_movies.include?(@movie) %>
-    <% if @my_favorite_movies.include?(@movie) %>
-      <%= button_to 'Remove from favorite', favorite_movies_by_user_path(movie_id: @movie.id), method: :delete %>
-    <% else %>
-      <%= button_to 'Add to favorite', favorite_movies_by_users_path(movie_id: @movie.id), method: :post %>
-    <% end %>
+  <%= link_to root_path do %>
+    <img src="/result (1).png" class="w-3xs fixed left-60 mt-4 cursor-pointer">
   <% end %>
+  <div class="fixed right-0 mt-4 mr-45 inline-flex justify-center items-center py-1 px-3 text-base font-medium text-center text-white rounded-lg hover:bg-gray-200 hover:text-gray-800 border-4 border-gray-200">
+    <%= button_to 'Back', results_path, method: :get, class: "cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg" %>
+  </div>
 
-  <% if @my_already_watched_movies.include?(@movie) %>
-    <div> Watched <%= @my_already_watched_movies.where(id: @movie.id).count %> time/s </div>
-  <% end %>
+  <div class="mt-20 mx-auto max-w-4xl p-6 bg-white bg-opacity-90 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center mb-6"><%= @movie.title %></h1>
+    <div class="flex justify-center mb-6">
+      <img src=<%= @movie.poster %> alt="" class="rounded-lg shadow-md">
+    </div>
 
-  <% if @my_soon_to_watch_movies.include?(@movie) %>
-    <button onClick="document.getElementById('watched_form').style.display = 'block'"> 
-      Move to already_watched
-    </button>
+      <% if @my_already_watched_movies.include?(@movie) %>
+        <% if @my_favorite_movies.include?(@movie) %>
+          <%= button_to 'Remove from favorite', favorite_movies_by_user_path(movie_id: @movie.id), method: :delete, class: "px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer" %>
+        <% else %>
+          <%= button_to 'Add to favorite', favorite_movies_by_users_path(movie_id: @movie.id), method: :post, class: "px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer" %>
+        <% end %>
+      <% end %>
 
-    <%= render 'already_watched_movies_by_users/form' %>
-  <% else %>
-    <%= button_to 'Add to soon_to_watch', soon_to_watch_movies_by_users_path(movie_id: @movie.id), method: :post %>
-  <% end %>
-</turbo-frame>
+      <% if @my_already_watched_movies.include?(@movie) %>
+        <div class="mt-4 text-center text-gray-700"> Watched <%= @my_already_watched_movies.where(id: @movie.id).count %> time/s </div>
+      <% end %>
+
+      <% if @my_soon_to_watch_movies.include?(@movie) %>
+        <div class="mt-6 text-center">
+          <button onClick="document.getElementById('watched_form').style.display = 'block'" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer"> 
+            Move to already watched list
+          </button>
+        </div>
+        <%= render 'already_watched_movies_by_users/form' %>
+      <% else %>
+        <div class="mt-6 text-center">
+          <%= button_to 'Add to soon to watch list', soon_to_watch_movies_by_users_path(movie_id: @movie.id), method: :post, class: "px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer" %>
+        </div>
+      <% end %>
+  </div>
+</body>
