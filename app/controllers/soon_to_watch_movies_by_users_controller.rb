@@ -1,10 +1,13 @@
 class SoonToWatchMoviesByUsersController < ApplicationController
   before_action :authenticate_user!
 
-  def index
+  def index 
     @my_soon_to_watch_movies = current_user.soon_to_watch_movies.order(created_at: :desc)
+    @my_soon_to_watch_movies = current_user.soon_to_watch_movies_by_users
+    .includes(:movie)
+    .map(&:movie)
   end
-
+  
   def create
     @movie = Movie.find(params[:movie_id])
     @my_soon_to_watch_movies = current_user.soon_to_watch_movies
@@ -14,8 +17,7 @@ class SoonToWatchMoviesByUsersController < ApplicationController
 
   def destroy
     @movie = Movie.find(params[:movie_id])
-    @my_soon_to_watch_movies = current_user.soon_to_watch_movies
-    @my_soon_to_watch_movies.destroy(@movie)
-    redirect_to request.referer || movie_path(@movie), notice: "Movie removed from favorite"
+    current_user.soon_to_watch_movies.delete(@movie)
+    redirect_to request.referer || movie_path(@movie), notice: "Movie removed from soon_to_watch"
   end
 end
