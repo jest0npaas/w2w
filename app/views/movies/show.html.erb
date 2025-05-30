@@ -27,14 +27,25 @@
             <%= button_to 'Add to favorite', favorite_movies_by_users_path(movie_id: @movie.id), method: :post, class: "px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer" %>
           </div>
         <% end %>
-      <% end %>
 
-      <% if @my_already_watched_movies.include?(@movie) %>
         <div class="mt-4 text-center text-gray-700"> Watched <%= @my_already_watched_movies.where(id: @movie.id).count %> time/s </div>
+        <div>
+          Internet Movie Database Rating: <%= @movie.api_rating %> <br/>
+          <% if @my_already_watched_movie.personal_rating.present? %>
+            Personal Rating: <%= @my_already_watched_movie.personal_rating %> <br/>
+          <% end %>
+          <% if @my_already_watched_movie.remarks.present? %>
+            Remarks: <%= @my_already_watched_movie.remarks %>
+          <% end %>
+        </div>
+
+      <% else %>
+        <div> Internet Movie Database Rating: <%= @movie.api_rating %> <br/> </div>
       <% end %>
 
       <% if @my_soon_to_watch_movies.include?(@movie) %>
         <div class="mt-6 text-center">
+          <%= button_to 'Remove from soon_to_watch', soon_to_watch_movies_by_user_path(movie_id: @movie.id), method: :delete %>
           <button onClick="document.getElementById('watched_form').style.display = 'block'" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer"> 
             Move to already watched list
           </button>
