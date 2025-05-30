@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   root "pages#index"
   get "/search", to: "pages#search"
   get "/results", to: "pages#results"
-  resources :movies, only: [ :show ]
+  resources :movies, only: [ :show, :index ]
 
   # resources :users, only: [:show]
 

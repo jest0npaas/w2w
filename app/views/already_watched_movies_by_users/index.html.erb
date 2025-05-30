@@ -1,22 +1,97 @@
-<h3> My Already Watched Movies </h3>
-<br/>
-<span> Movie Count: <%= @my_already_watched_movies_latest.size %> </span>
+<body class="bg-cover bg-[url('/dark-vip-cinema-studio-still-life.jpg')] overflow-x-hidden">
 
-<% if @my_already_watched_movies_latest.any? %>
-  <ul>
-    <% @my_already_watched_movies_latest.each do |m| %>
-      <% movie = m.movie %>
-      <li>
-        <strong><%= movie.title %></strong> <br/>
-        <img src=<%= movie.poster %> alt=""> <br/>
-
-        Watched <%= @watched_counts[movie.id] %> time/s <br/>
-        Latest Watched Date: <%= m.created_at.strftime('%B %d, %Y %I:%M %p') %> <br/>
-        Latest Personal Rating: <%= m.personal_rating || "N/A" %> <br/>
-        Latest Remarks: <%= m.remarks.presence || "None" %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>You have no already watched movies yet.</p>
+<% @my_already_watched_movies.each do |m| %>
+ <div class="fixed right-0 mt-4 mr-45 inline-flex justify-center items-center py-1 px-3 text-base font-medium text-center text-white rounded-lg hover:bg-gray-200 hover:text-gray-800 border-4 border-gray-200">
+    <%= link_to 'Back', movie_path(m.api_movie_id), class: "cursor-pointer" %>
+  </div>
 <% end %>
+
+
+<div class="mt-20 w-full">
+  <h1 class="text-5xl font-extrabold text-white">
+    My Already Watched Movies
+    <small class="ms-2 font-semibold text-gray-500 text-gray-400">
+      <%= @my_already_watched_movies_latest.size %>
+    </small>
+  </h1>
+
+
+<div class="mt-10 w-full">
+  <div class="w-full overflow-x-auto shadow-md rounded-lg">
+    <% if @my_already_watched_movies.any? %>
+      <table class="text-sm w-full text-gray-500">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-left">
+              <tr>
+                  <th scope="col" class="px-16 py-3">
+                      <span class="sr-only">Image</span>
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <% @my_already_watched_movies_latest.each do |m|  %>
+                  <% movie = m.movie %>
+                  <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                      <td class="p-4">
+                          <img src=<%= movie.poster %> class="w-16 md:w-32 max-w-full max-h-full" alt="Apple Watch">
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-gray-900">
+                          <%= movie.title %>
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-gray-900">
+                        Watched <%= @watched_counts[movie.id] %> time/s
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-gray-900">
+                        Latest Watched Date: <%= m.created_at.strftime('%B %d, %Y %I:%M %p') %>
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-gray-900">
+                        <div class="flex items-center justify-center">
+                          <p class="ms-2 text-sm font-bold text-gray-900">Latest Personal Rating: </p>
+                          <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <p class="text-sm font-bold text-gray-900"><%= m.personal_rating || "N/A" %></p>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-gray-900">
+                        <div class="flex flex-col items-center justify-center">
+                          <span>Latest Remarks: </span>
+                          <p class="text-gray-500"><%= m.remarks.presence || "None" %></p>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 font-semibold text-gray-900">
+                          <div class="inline-flex items-center justify-center px-5 py-2 me-2 text-sm mt-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer">
+                            <%= link_to "Show", movie_path(movie.api_movie_id) %>
+                          </div>
+                      </td>
+                  </tr>
+                <% end %>
+          </tbody>
+        </table>
+      <% else %>
+            <div class="text-center text-white text-lg mt-10">
+              You have no already watched movies yet.
+            </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+</body>

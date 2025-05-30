@@ -1,15 +1,13 @@
 <body class="bg-cover bg-[url('/dark-vip-cinema-studio-still-life.jpg')] overflow-x-hidden h-screen">
 
-<div class="fixed right-0 mt-4 mr-45 inline-flex justify-center items-center py-1 px-3 text-base font-medium text-center text-white rounded-lg hover:bg-gray-200 hover:text-gray-800 border-4 border-gray-200">
-    <%= button_to 'Back', search_path, method: :get, class: "cursor-pointer" %>
-  </div>
-
   <%= link_to root_path do %>
     <img src="/result (1).png" class="w-3xs fixed left-60 mt-4 cursor-pointer">
   <% end %>
-  <div class="fixed right-0 mt-4 mr-45 inline-flex justify-center items-center py-1 px-3 text-base font-medium text-center text-white rounded-lg hover:bg-gray-200 hover:text-gray-800 border-4 border-gray-200">
-    <%= button_to 'Back', results_path, method: :get, class: "cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg" %>
+
+ <div class="fixed right-0 mt-4 mr-45 inline-flex justify-center items-center py-1 px-3 text-base font-medium text-center text-white rounded-lg hover:bg-gray-200 hover:text-gray-800 border-4 border-gray-200">
+    <%= link_to 'Home', search_path, class: "cursor-pointer" %>
   </div>
+
 
   <div class="mt-20 mx-auto max-w-4xl p-6 bg-white bg-opacity-90 rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold text-center mb-6"><%= @movie.title %></h1>
@@ -29,23 +27,44 @@
         <% end %>
 
         <div class="mt-4 text-center text-gray-700"> Watched <%= @my_already_watched_movies.where(id: @movie.id).count %> time/s </div>
-        <div>
-          Internet Movie Database Rating: <%= @movie.api_rating %> <br/>
+        
+        
+        <div class="mt-2">
+          <div class="flex items-center justify-center">
+            <p class="ms-2 text-sm font-bold text-gray-900">Internet Movie Database Rating:</p>
+            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+            </svg>
+            <p class="text-sm font-bold text-gray-900"><%= @movie.api_rating %></p>
+          </div>
           <% if @my_already_watched_movie.personal_rating.present? %>
-            Personal Rating: <%= @my_already_watched_movie.personal_rating %> <br/>
+            <div class="flex items-center justify-center">
+              <p class="ms-2 text-sm font-bold text-gray-900">Personal Rating:</p>
+              <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+              </svg>
+              <p class="text-sm font-bold text-gray-900"><%= @my_already_watched_movie.personal_rating %></p>
+            </div>
           <% end %>
           <% if @my_already_watched_movie.remarks.present? %>
-            Remarks: <%= @my_already_watched_movie.remarks %>
+            <div class="flex items-center justify-center">
+              <p class="text-gray-500"><%= @my_already_watched_movie.remarks %></p>
+            </div>
           <% end %>
         </div>
-
       <% else %>
-        <div> Internet Movie Database Rating: <%= @movie.api_rating %> <br/> </div>
+        <div class="flex items-center justify-center">
+            <p class="ms-2 text-sm font-bold text-gray-900">Internet Movie Database Rating:</p>
+            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+            </svg>
+            <p class="text-sm font-bold text-gray-900"><%= @movie.api_rating %></p>
+          </div>
       <% end %>
 
       <% if @my_soon_to_watch_movies.include?(@movie) %>
-        <div class="mt-6 text-center">
-          <%= button_to 'Remove from soon_to_watch', soon_to_watch_movies_by_user_path(movie_id: @movie.id), method: :delete %>
+        <div class="mt-4 text-center">
+          <%= button_to 'Remove from soon_to_watch', soon_to_watch_movies_by_user_path(movie_id: @movie.id), method: :delete, class: "mb-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer" %>
           <button onClick="document.getElementById('watched_form').style.display = 'block'" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer"> 
             Move to already watched list
           </button>
