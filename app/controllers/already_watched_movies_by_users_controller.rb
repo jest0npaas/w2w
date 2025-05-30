@@ -1,10 +1,10 @@
 class AlreadyWatchedMoviesByUsersController < ApplicationController
   before_action :authenticate_user!
 
-  def index 
+  def index
     @my_already_watched_movies = current_user.already_watched_movies.order(created_at: :desc)
   end
-  
+
   def create
     @movie = Movie.find(params[:movie_id])
     current_user.soon_to_watch_movies.delete(@movie)
@@ -19,5 +19,4 @@ class AlreadyWatchedMoviesByUsersController < ApplicationController
   def already_watched_movies_by_users_params
     params.require(:already_watched_movies_by_user).permit(:personal_rating, :remarks)
   end
-
 end

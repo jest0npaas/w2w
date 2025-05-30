@@ -1,7 +1,7 @@
 class FavoriteMoviesByUsersController < ApplicationController
   before_action :authenticate_user!
 
-  def index 
+  def index
     @my_favorite_movies = current_user.favorite_movies.order(created_at: :desc)
   end
 
