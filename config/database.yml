@@ -81,6 +81,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
     database: w2w_production
     username: w2w
     password: <%= ENV["W2W_DATABASE_PASSWORD"] %>
