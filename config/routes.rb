@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get "/results", to: "pages#results"
   resources :movies, only: [ :show, :index ]
 
+  match "*unmatched", to: "application#not_found", via: :all
+
   # resources :users, only: [:show]
 
   resources :favorite_movies_by_users, path: "favorite", only: [ :index, :create, :destroy ]
