@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
       )
     end
   end
-  
+
   private
 
   def load_show_data

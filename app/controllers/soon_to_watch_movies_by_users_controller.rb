@@ -1,13 +1,13 @@
 class SoonToWatchMoviesByUsersController < ApplicationController
   before_action :authenticate_user!
 
-  def index 
+  def index
     @my_soon_to_watch_movies = current_user.soon_to_watch_movies_by_users
     .order(created_at: :asc)
     .includes(:movie)
     .map(&:movie)
   end
-  
+
   def create
     @movie = Movie.find(params[:movie_id])
     @my_soon_to_watch_movies = current_user.soon_to_watch_movies
