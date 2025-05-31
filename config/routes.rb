@@ -16,11 +16,11 @@ Rails.application.routes.draw do
   get "/results", to: "pages#results"
   resources :movies, only: [ :show, :index ]
 
-  match "*unmatched", to: "application#not_found", via: :all
-
   # resources :users, only: [:show]
 
   resources :favorite_movies_by_users, path: "favorite", only: [ :index, :create, :destroy ]
   resources :soon_to_watch_movies_by_users, path: "soon_to_watch", only: [ :index, :create, :destroy ]
   resources :already_watched_movies_by_users, path: "already_watched", only: [ :index, :create ]
+
+  match "*unmatched", to: "application#not_found", via: :all
 end
