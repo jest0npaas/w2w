@@ -19,7 +19,7 @@ class AlreadyWatchedMoviesByUsersController < ApplicationController
     current_user.already_watched_movies_by_users.create!(
       already_watched_movies_by_users_params.merge(movie_id: @movie.id)
     )
-    redirect_to request.referer || movie_path(@movie), notice: "Movie moved to already_watched"
+    redirect_to request.referer || movie_path(@movie.api_movie_id), notice: "Movie moved to already_watched"
   end
 
   private
